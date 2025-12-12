@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta Aleatoria</title>
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #0b5a2a;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+
+      .card {
+        width: 260px;
+        height: 360px;
+        background: #fff;
+        border-radius: 18px;
+        border: 2px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        position: relative;
+      }
+
+      .top-suit,
+      .bottom-suit {
+        position: absolute;
+        font-size: 64px;
+        line-height: 1;
+      }
+
+      .top-suit {
+        top: 18px;
+        left: 18px;
+      }
+
+      .bottom-suit {
+        bottom: 18px;
+        right: 18px;
+        transform: rotate(180deg);
+      }
+
+      .value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 110px;
+        font-weight: 700;
+      }
+
+      .heart,
+      .diamond {
+        color: #d10f1a;
+      }
+
+      .spade,
+      .club {
+        color: #111;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="card" class="card">
+      <div id="topSuit" class="top-suit"></div>
+      <div id="value" class="value"></div>
+      <div id="bottomSuit" class="bottom-suit"></div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        const suits = [
+          { name: "diamond", symbol: "♦" },
+          { name: "heart", symbol: "♥" },
+          { name: "spade", symbol: "♠" },
+          { name: "club", symbol: "♣" }
+        ];
+
+        const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
+        const randomSuitIndex = Math.floor(Math.random() * suits.length);
+        const randomValueIndex = Math.floor(Math.random() * values.length);
+
+        const suit = suits[randomSuitIndex];
+        const value = values[randomValueIndex];
+
+        const cardEl = document.getElementById("card");
+        const topSuitEl = document.getElementById("topSuit");
+        const bottomSuitEl = document.getElementById("bottomSuit");
+        const valueEl = document.getElementById("value");
+
+        cardEl.classList.remove("diamond", "heart", "spade", "club");
+        cardEl.classList.add(suit.name);
+
+        topSuitEl.textContent = suit.symbol;
+        bottomSuitEl.textContent = suit.symbol;
+        valueEl.textContent = value;
+      };
+    </script>
+  </body>
+</html>
